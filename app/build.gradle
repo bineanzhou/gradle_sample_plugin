@@ -2,6 +2,18 @@ plugins {
     id 'com.android.application'
 }
 
+//https://docs.gradle.org/6.7.1/userguide/custom_plugins.html
+//https://juejin.cn/post/6844903837992484872
+apply from: "greeting_plugin.gradle"
+// Configure the extension using a DSL block
+greeting {
+    message = 'Hi'
+    greeter = 'Gradle'
+}
+
+// Configure the extension
+greeting.message = 'Hi from Gradle'
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"

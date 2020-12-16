@@ -4,6 +4,10 @@ plugins {
 
 
 
+task showRepos {
+    println "All repos:"
+    println repositories.collect { it.name }
+}
 //https://docs.gradle.org/6.7.1/userguide/custom_plugins.html
 //https://juejin.cn/post/6844903837992484872
 apply from: "greeting_plugin.gradle"
@@ -17,6 +21,7 @@ greeting {
 greeting.message = 'Hi from Gradle'
 
 // 引入buildSrc里的自定义插件
+apply plugin: 'com.qh.sample.plugin1'
 apply plugin: 'com.qh.sample.plugin'
 android {
     compileSdkVersion 30
@@ -43,6 +48,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+
 
 dependencies {
 

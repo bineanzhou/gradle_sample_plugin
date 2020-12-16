@@ -1,2 +1,2 @@
-include ':app'
+include ':app',':sample_plugin'
 rootProject.name = "GradleSamplePlugin"

@@ -5,8 +5,8 @@ import org.gradle.api.Project
 
 class SamplePluginImpl implements Plugin<Project> {
     void apply(Project project) {
-        project.task('testTask') {
-            println "Hello gradle plugin buildSrc"
+        project.task('testTask1') {
+            println "Hello gradle sample plugin ^_^"
         }
     }
 }

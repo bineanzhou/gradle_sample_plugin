@@ -1,0 +1,43 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply from: "${rootProject.rootDir}/config.gradle"
+
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+/**
+ * 由于 buildSrc 的执行时机要早于任何一个 project，因此需要⾃⼰添加仓库
+ */
+//repositories {
+//    mavenLocal()
+//    mavenCentral()
+//    google()
+//    jcenter()
+//    maven { url 'https://oss.sonatype.org/content/repositories/public/' }
+//    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+//}
+
+
+compileKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+
+
+dependencies {
+    compileOnly localGroovy()
+    compileOnly gradleApi()
+    implementation 'com.android.tools.build:gradle:3.5.3'
+}
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //设置插件的GAV参数
+            pom.groupId = 'com.qh.sample.plugin'//你的包名
+            pom.artifactId = 'samplePlugin'
+            pom.version = '1.0.1'//版本号
+            //文件发布到下面目录  ../是父目录
+            repository(url: uri(rootProject.ext.localRepoURL))
+        }
+    }
+}
+

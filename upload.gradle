@@ -1,0 +1,18 @@
+apply plugin: 'com.novoda.bintray-release'
+// 配置发布 # script
+publish {
+    def groupProjectID = 'com.nsky.kit'
+    def artifactProjectID = 'sample-plugin'
+    def publishVersionID = "${rootProject.ext.android["pluginVersionName"]}"
+
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+
+    userOrg = 'nskyKit'
+    repoName = 'nskyKit'
+    groupId = groupProjectID
+    artifactId = artifactProjectID
+    publishVersion = publishVersionID
+    desc = '{library description}'
+    website = '{github_url}'
+}
